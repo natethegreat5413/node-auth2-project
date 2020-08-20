@@ -9,22 +9,28 @@ module.exports = {
 
 function find(){
     return db('users as u')
-        .join('departments as d', 'u.deparment', 'd.id')
+        .join('departments as d', 'u.department', 'd.id')
         .select('u.id', 'u.username', 'd.name as department')
         .orderBy('u.id')
 }
 
-function findById(filter){
+function findBy(filter){
     return db('users as u')
         .join('departments as d', 'u.department', 'd.id')
         .where(filter)
-        .select('u.id', 'u.username', 'd.name as role', 'u.password')
+        .select('u.id', 'u.username', 'd.name as department', 'u.password')
         .orderBy('u.id')
 }
 
 async function add(user){
     try {
         const [id] = await db('users').insert(user, 'id');
-        return findById(id)
+        return findById(id);
+    }catch (error){
+        throw error;
     }
+}
+
+function findById(id){
+    return db('users').where({ id }).first()
 }

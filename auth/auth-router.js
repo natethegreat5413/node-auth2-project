@@ -20,7 +20,7 @@ router.post('/register', (req, res) => {
         // save the user to the database
         Users.add(credentials)
             .then(user => {
-                res.status(201).json({ data: user, token })
+                res.status(201).json({ data: user })
             })
             .catch(error => {
                 res.status(500).json({ message: error.message })
@@ -53,7 +53,7 @@ router.post('/login', (req, res) => {
 })
 
 
-function signTokent(user){
+function signToken(user){
     const payload = {
         subject: user.id,
         username: user.username,

@@ -10,7 +10,7 @@ exports.up = function(knex) {
         tbl.string('username', 128).notNullable().unique().index()
         tbl.string('password', 256).notNullable()
         tbl 
-            .integer('department')
+            .integer('department', 256)
             .unsigned()
             .references('departments.id')
             .onDelete('RESTRICT')

@@ -8,7 +8,7 @@ exports.seed = function (knex) {
     },
   ];
 
-  return knex('roles')
-    .insert(roles)
-    .then(() => console.log("\n== Seed data for roles table added. ==\n" ))
+  return knex('departments')
+    .insert(departments)
+    .then(() => console.log("\n== Seed data for departments table added. ==\n" ))
 }
